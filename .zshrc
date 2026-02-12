@@ -121,6 +121,7 @@ source $ZSH/oh-my-zsh.sh
 # !! Contents within this block are managed by juliaup !!
 
 path=('/Users/eduardo/.juliaup/bin' $path)
+path=('/Users/eduardo/.julia/bin' $path)
 export PATH
 
 # <<< juliaup initialize <<<

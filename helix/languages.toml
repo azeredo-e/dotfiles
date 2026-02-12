@@ -1,0 +1,28 @@
+[[language]]
+name = "julia"
+scope = "source.julia"
+injection-regex = "julia"
+file-types = ["jl"]
+workspace-lsp-roots = ["Project.toml", "Manifest.toml"]
+comment-token = "#"
+language-servers = [
+    "jetls"
+]
+indent = { tab-width = 4, unit = "    " }
+auto-format = true
+
+[language-server.jetls]
+command = "jetls"
+args = ["--threads=auto", "--"]
+
+[language.formatter]
+args = [
+    "--startup-file=no",
+    "--history-file=no",
+    "--project=@juliaformatter",
+    "--quiet",
+    "-e",
+    "using JuliaFormatter; print(format_text(read(stdin, String); Dict{Symbol,Any}(Symbol(k) => v for (k, v) in JuliaFormatter.find_config_file(realpath(\".\")))...))"
+    ]
+timeout = 60 
+command = "julia"

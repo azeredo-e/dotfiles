@@ -1,0 +1,71 @@
+theme = "mytheme" # https://github.com/CptPotato/helix-themes
+
+[editor]
+welcome-screen = true
+# auto-format = true
+scrolloff = 8
+line-number = "relative"
+cursorline = true
+mouse = true
+color-modes = true
+bufferline = { render-mode = "always", separator = "||" }
+# rulers = [80, 120] # it works but looks like shit
+# ruler-char = "┊"   # examples: "┊", "│", ".", "|"; set to "" for background style
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+# File explorer configuration
+[editor.file-picker]
+hidden = false
+parents = false
+
+[editor.soft-wrap]
+enable = true
+
+# Do not render white spaces
+[editor.whitespace]
+render = "none"
+
+[editor.indent-guides]
+render = false
+character = "╎" # Some characters that work well: "▏", "┆", "┊", "⸽"
+skip-levels = 1
+
+[editor.inline-diagnostics]
+other-lines = "error"
+cursor-line = "hint"
+
+# LSP Server configuration
+[editor.lsp]
+display-messages = true
+auto-signature-help	= true
+display-signature-help-docs	= true
+
+# Key mappings
+[keys.normal]
+D = "kill_to_line_end"
+# Use Shift-l and -h to move through tabs
+S-l = ":buffer-next"
+S-h = ":buffer-previous"
+
+# ---- Julia ----
+## REPL interaction stuff
+# - start repl (note that a terminal pane can be started by hand too. As long as it is on the pane on the right)
+"A-s" = ":noop %sh{~/.config/helix/helix-run-repl.sh %{buffer_name}}"
+# - execute line and move cursor to next line
+A-ret = ["extend_to_line_bounds",  ":pipe-to xargs -0 wezterm cli send-text --pane-id $(wezterm cli get-pane-direction right)", "move_visual_line_down", "goto_line_start"]
+# - execute line and keep cursor location
+"A-\\" = "@<C-s><A-ret><C-o>"
+# exectue function
+A-f = "@<C-s>maf<A-ret><C-o>"
+# exectue paragraph (block of code without spaces)
+A-P = "@<C-s>map<A-ret><C-o>"
+# execute file (Julia only)
+A-I = [":write", ":sh wezterm cli send-text --no-paste --pane-id $(wezterm cli get-pane-direction right) \"include(\\\"%{buffer_name}\\\")\n\""]
+
+[keys.select]
+# execute selection
+A-ret = [":pipe-to xargs -0 wezterm cli send-text --pane-id $(wezterm cli get-pane-direction right)", ":sh wezterm cli send-text --no-paste --pane-id $(wezterm cli get-pane-direction right) \"\n\""]
