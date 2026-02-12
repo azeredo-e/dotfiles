@@ -16,7 +16,7 @@ Install oh-my-zsh with
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
-and just copy the .zshrc into the `~/` folder.
+and just copy the `.zshrc` into the `~/` folder.
 
 ## WezTerm
 
@@ -32,9 +32,11 @@ and put the `.wezterm.lua` file in the `~/`. After reopening it should be ok.
 
 ## Helix
 
+This is mainly for julia/python development, so most configs and extras are built for those in mind.
+
 Im using a fork by [gj118 in GitHub](https://github.com/gj1118/helix?tab=readme-ov-file).
 
-For building, Rust is required, install *rustup* with
+For building Helix, Rust is required, install *rustup* with
 
 ```sh
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -91,7 +93,7 @@ After that it should work out of the box.
 
 ### Troubleshoot
 
-If the multipane command doesn't work chec if the script has permission i.e. `chmod +x helix/helix-run-repl.zsh`.
+If the multipane command doesn't work check if the script has permission i.e. `chmod +x helix/helix-run-repl.zsh`.
 
 - https://tonisagrista.com/blog/2024/on-neovim-and-helix/
 - https://maurow.bitbucket.io/notes/helix-julia-latex-setup.html
